@@ -73,7 +73,7 @@ def main():
     b = Board()
     run = True
     while run:
-        #pygame.time.delay(1)
+        pygame.time.delay(60)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
