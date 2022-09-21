@@ -24,7 +24,6 @@ class Board:
         ]
         self.sounds = []
 
-
     def drawButtons(self):
         for cords in self.__button_coordinates:
             pygame.draw.circle(self.__win, self.green, cords, 20, width=0)
@@ -60,26 +59,26 @@ class Board:
 
     def playSounds(self):
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_KP1] and self.sounds[0] != '':
+        if (keys[pygame.K_KP1] or keys[pygame.K_1]) and self.sounds[0] != '':
             pygame.mixer.Channel(1).play(pygame.mixer.Sound(self.sounds[0]))
-        if keys[pygame.K_KP2] and self.sounds[1] != '':
+        if (keys[pygame.K_KP2] or keys[pygame.K_2]) and self.sounds[1] != '':
             pygame.mixer.Channel(2).play(pygame.mixer.Sound(self.sounds[1]))
-        if keys[pygame.K_KP3] and self.sounds[2] != '':
+        if (keys[pygame.K_KP3] or keys[pygame.K_3]) and self.sounds[2] != '':
             pygame.mixer.Channel(3).play(pygame.mixer.Sound(self.sounds[2]))
-        if keys[pygame.K_KP4] and self.sounds[3] != '':
+        if (keys[pygame.K_KP4] or keys[pygame.K_4]) and self.sounds[3] != '':
             pygame.mixer.Channel(4).play(pygame.mixer.Sound(self.sounds[3]))
-        if keys[pygame.K_KP5] and self.sounds[4] != '':
+        if (keys[pygame.K_KP5] or keys[pygame.K_5]) and self.sounds[4] != '':
             pygame.mixer.Channel(5).play(pygame.mixer.Sound(self.sounds[4]))
-        if keys[pygame.K_KP6] and self.sounds[5] != '':
+        if (keys[pygame.K_KP6] or keys[pygame.K_6]) and self.sounds[5] != '':
             pygame.mixer.Channel(6).play(pygame.mixer.Sound(self.sounds[5]))
-        if keys[pygame.K_KP7] and self.sounds[6] != '':
+        if (keys[pygame.K_KP7] or keys[pygame.K_7]) and self.sounds[6] != '':
             pygame.mixer.Channel(7).play(pygame.mixer.Sound(self.sounds[6]))
-        if keys[pygame.K_KP8] and self.sounds[7] != '':
+        if (keys[pygame.K_KP8] or keys[pygame.K_8]) and self.sounds[7] != '':
             pygame.mixer.Channel(8).play(pygame.mixer.Sound(self.sounds[7]))
-        if keys[pygame.K_KP9] and self.sounds[7] != '':
+        if (keys[pygame.K_KP9] or keys[pygame.K_9]) and self.sounds[8] != '':
             pygame.mixer.Channel(9).play(pygame.mixer.Sound(self.sounds[8]))
 
-        if keys[pygame.K_KP0]:
+        if keys[pygame.K_KP0] or keys[pygame.K_0]:
             pygame.mixer.quit()
             pygame.mixer.init()
             pygame.mixer.set_num_channels(10)
@@ -90,7 +89,8 @@ class Board:
         for file in dir_list:
             if file[-4:] == '.wav' and len(self.sounds) < 9:
                 self.sounds.append('Sounds/' + file)
-
+        while len(self.sounds) < 9:
+            self.sounds.append('')
 
 def main():
     b = Board()
